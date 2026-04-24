@@ -25,9 +25,12 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-50 flex h-[72px] w-full flex-row items-center bg-dark-blue lg:h-full lg:w-[103px] lg:flex-col lg:rounded-r-[20px]">
-      <div className="relative h-[72px] w-[72px] lg:h-[103px] lg:w-full">
-        <Image src="/Logo.png" alt="" fill className="object-contain" />
+    <aside className="fixed left-0 top-0 z-50 flex h-[72px] w-full flex-row items-center bg-[#1E2139] lg:h-full lg:w-[103px] lg:flex-col lg:rounded-r-[20px]">
+      <div className="relative flex h-[72px] w-[72px] items-center justify-center overflow-hidden rounded-r-[20px] bg-primary lg:h-[103px] lg:w-full">
+        <div className="absolute bottom-0 h-1/2 w-full rounded-tl-[20px] bg-primary-light" />
+        <div className=" ">
+          <Image src="/Logo.png" alt="Logo" fill className="z-10 object-contain" />
+        </div>
       </div>
 
       <div className="ml-auto flex h-full flex-row items-center lg:mt-auto lg:ml-0 lg:w-full lg:flex-col">

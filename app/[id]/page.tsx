@@ -1,49 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useState } from "react";
-import StatusBadge, { InvoiceStatus } from "../../components/StatusBadge";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import StatusBadge from "../../components/StatusBadge";
 import DeleteModal from "../../components/DeleteModal";
 import InvoiceForm from "../../components/InvoiceForm";
-
-// Dummy data for demonstration
-const DUMMY_INVOICES = [
-  {
-    id: "XM9141",
-    description: "Graphic Design",
-    senderAddress: {
-      street: "19 Union Terrace",
-      city: "London",
-      postCode: "E1 3EZ",
-      country: "United Kingdom",
-    },
-    clientName: "Alex Grim",
-    clientEmail: "alexgrim@mail.com",
-    clientAddress: {
-      street: "84 Church Way",
-      city: "Bradford",
-      postCode: "BD1 9PB",
-      country: "United Kingdom",
-    },
-    createdAt: "21 Aug 2021",
-    paymentDue: "20 Sep 2021",
-    items: [
-      { name: "Banner Design", quantity: 1, price: 156.0, total: 156.0 },
-      { name: "Email Design", quantity: 2, price: 200.0, total: 400.0 },
-    ],
-    total: 556.0,
-    status: "pending" as InvoiceStatus,
-  },
-];
+import { Invoice, getInvoices, deleteInvoice, updateInvoice } from "../../utils/storage";
 
 export default function InvoiceDetail() {
   const params = useParams();
+  const router = useRouter();
   const id = params.id as string;
+  const [invoice, setInvoice] = useState<Invoice | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditFormOpen, setIsEditFormOpen] = useState(false);
 
-  const invoice = DUMMY_INVOICES.find((inv) => inv.id === id) || DUMMY_INVOICES[0];
+  useEffect(() => {
+    const invoices = getInvoices();
+    const found = invoices.find((inv) => inv.id === id);
+    if (found) {
+      setInvoice(found);
+    } else {
+      // Handle not found if needed, or redirect
+    }
+  }, [id]);
+
+  const handleDelete = () => {
+    deleteInvoice(id);
+    setIsDeleteModalOpen(false);
+    router.push("/");
+  };
+
+  const handleMarkAsPaid = () => {
+    if (invoice) {
+      const updated = { ...invoice, status: "paid" as const };
+      updateInvoice(updated);
+      setInvoice(updated);
+    }
+  };
+
+  if (!invoice) return <div className="p-8 text-center">Loading invoice...</div>;
 
   return (
     <div className="pb-20">
@@ -51,10 +48,7 @@ export default function InvoiceDetail() {
         <DeleteModal
           id={invoice.id}
           onCancel={() => setIsDeleteModalOpen(false)}
-          onDelete={() => {
-            console.log("Deleted");
-            setIsDeleteModalOpen(false);
-          }}
+          onDelete={handleDelete}
         />
       )}
 
@@ -62,7 +56,13 @@ export default function InvoiceDetail() {
         <InvoiceForm
           type="edit"
           id={invoice.id}
-          onClose={() => setIsEditFormOpen(false)}
+          onClose={() => {
+            setIsEditFormOpen(false);
+            // Refresh local state after edit
+            const invoices = getInvoices();
+            const found = invoices.find((inv) => inv.id === id);
+            if (found) setInvoice(found);
+          }}
         />
       )}
 
@@ -79,7 +79,7 @@ export default function InvoiceDetail() {
             fillRule="evenodd"
           />
         </svg>
-        <span className="heading-s-variant">Go back</span>
+        <span className="heading-s-variant dark:text-white">Go back</span>
       </Link>
 
       <div className="mb-6 flex items-center justify-between rounded-lg bg-invoice-bg p-6 shadow-sm">
@@ -90,26 +90,31 @@ export default function InvoiceDetail() {
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditFormOpen(true)}
-            className="rounded-full bg-[#F9FAFE] px-6 py-3 text-muted-blue transition-colors hover:bg-light-grey-blue dark:bg-darker-blue dark:text-light-grey-blue dark:hover:bg-white dark:hover:text-muted-blue"
+            className="rounded-full bg-[#F9FAFE] cursor-pointer px-6 py-3 text-muted-blue transition-colors hover:bg-light-grey-blue dark:bg-darker-blue dark:text-light-grey-blue dark:hover:bg-white dark:hover:text-muted-blue"
           >
             <span className="heading-s-variant">Edit</span>
           </button>
           <button
             onClick={() => setIsDeleteModalOpen(true)}
-            className="rounded-full bg-error px-6 py-3 text-white transition-colors hover:bg-error-light"
+            className="rounded-full bg-error cursor-pointer px-6 py-3 text-white transition-colors hover:bg-error-light"
           >
             <span className="heading-s-variant">Delete</span>
           </button>
-          <button className="rounded-full bg-primary px-6 py-3 text-white transition-colors hover:bg-primary-light">
-            <span className="heading-s-variant">Mark as Paid</span>
-          </button>
+          {invoice.status !== "paid" && (
+            <button 
+              onClick={handleMarkAsPaid}
+              className="rounded-full bg-primary cursor-pointer px-6 py-3 text-white transition-colors hover:bg-primary-light"
+            >
+              <span className="heading-s-variant">Mark as Paid</span>
+            </button>
+          )}
         </div>
       </div>
 
       <div className="rounded-lg bg-invoice-bg p-12 shadow-sm">
         <div className="mb-12 flex justify-between">
           <div>
-            <h3 className="mb-2 uppercase">
+            <h3 className="mb-2 uppercase dark:text-white">
               <span className="text-muted-blue">#</span>
               {invoice.id}
             </h3>
@@ -151,6 +156,7 @@ export default function InvoiceDetail() {
             <p className="heading-s dark:text-white text-[#0C0E16]">{invoice.clientEmail}</p>
           </div>
         </div>
+        
         <div className="overflow-hidden rounded-lg bg-[#F9FAFE] dark:bg-[#252945]">
           <div className="p-8 pb-4">
             <div className="mb-8 grid grid-cols-5 text-muted-blue body">
@@ -160,7 +166,7 @@ export default function InvoiceDetail() {
               <span className="text-right">Total</span>
             </div>
             {invoice.items.map((item, index) => (
-              <div key={index} className="mb-8 grid grid-cols-5 items-center heading-s last:mb-0">
+              <div key={index} className="mb-8 grid grid-cols-5 items-center heading-s last:mb-0 dark:text-white">
                 <span className="col-span-2">{item.name}</span>
                 <span className="text-center text-muted-blue">{item.quantity}</span>
                 <span className="text-right text-muted-blue">
