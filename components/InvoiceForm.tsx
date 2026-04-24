@@ -21,7 +21,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
 
   return (
     <div className="fixed inset-0 z-[60] flex bg-black/50">
-      <div className="h-full w-full max-w-[720px] overflow-y-auto bg-white p-14 pt-8 pl-[135px] dark:bg-dark-bg-alt">
+      <div className="h-full w-full max-w-[720px] overflow-y-auto bg-white p-8 pt-32 dark:bg-dark-bg-alt lg:p-14 lg:pt-8 lg:pl-[135px]">
         <h1 className="mb-12 text-2xl font-bold dark:text-white">
           {type === "edit" ? (
             <>
