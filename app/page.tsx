@@ -100,16 +100,16 @@ export default function Home() {
       )}
 
       {isEmpty ? (
-        <div className="mt-20 flex flex-col items-center text-center">
-          <div className="mb-16">
+        <div className="mt-16 flex flex-col items-center text-center lg:mt-24">
+          <div className="mb-10 lg:mb-16">
             <img 
-              src="https://raw.githubusercontent.com/FrontendMasters/fm-challenges/main/invoice-app/public/assets/illustration-empty.svg" 
+              src="/emptystate.png" 
               alt="No invoices"
-              className="h-auto w-[242px]"
+              className="h-auto w-[193px] lg:w-[242px]"
             />
           </div>
-          <h2 className="mb-6">There is nothing here</h2>
-          <p className="max-w-[220px] text-muted-blue">
+          <h2 className="mb-6 text-xl font-bold lg:text-2xl dark:text-white">There is nothing here</h2>
+          <p className="max-w-[220px] text-muted-blue dark:text-light-grey-blue">
             Create an invoice by clicking the <span className="font-bold">New Invoice</span> button and get started
           </p>
         </div>
