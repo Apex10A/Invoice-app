@@ -69,13 +69,30 @@ const DUMMY_INVOICES: Invoice[] = [
 
 export default function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const isEmpty = DUMMY_INVOICES.length === 0;
+  const [selectedStatuses, setSelectedStatuses] = useState<InvoiceStatus[]>([]);
+
+  const toggleStatus = (status: InvoiceStatus) => {
+    setSelectedStatuses((prev) =>
+      prev.includes(status)
+        ? prev.filter((s) => s !== status)
+        : [...prev, status]
+    );
+  };
+
+  const filteredInvoices = DUMMY_INVOICES.filter((invoice) => {
+    if (selectedStatuses.length === 0) return true;
+    return selectedStatuses.includes(invoice.status);
+  });
+
+  const isEmpty = filteredInvoices.length === 0;
 
   return (
     <div>
       <Header 
-        count={DUMMY_INVOICES.length} 
+        count={filteredInvoices.length} 
         onNewInvoice={() => setIsFormOpen(true)} 
+        selectedStatuses={selectedStatuses}
+        onStatusChange={toggleStatus}
       />
       
       {isFormOpen && (
@@ -98,7 +115,7 @@ export default function Home() {
         </div>
       ) : (
         <div className="flex flex-col gap-4">
-          {DUMMY_INVOICES.map((invoice) => (
+          {filteredInvoices.map((invoice) => (
             <Link href={`/${invoice.id}`} key={invoice.id}>
               <InvoiceItem
                 id={invoice.id}
