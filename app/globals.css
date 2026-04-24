@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #F8F8FB;
+  --foreground: #0C0E16;
+  --invoice-bg: #FFFFFF;
+  --invoice-text: #0C0E16;
+  
+  --primary: #7C5DFA;
+  --primary-light: #9277FF;
+  --dark-blue: #1E2139;
+  --darker-blue: #252945;
+  --light-grey-blue: #DFE3FA;
+  --grey-blue: #888EB0;
+  --muted-blue: #7E88C3;
+  --very-dark-blue: #0C0E16;
+  --error: #EC5757;
+  --error-light: #FF9797;
+  --light-bg: #F8F8FB;
+  --dark-bg-alt: #141625;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-invoice-bg: var(--invoice-bg);
+  --color-invoice-text: var(--invoice-text);
+  
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-dark-blue: var(--dark-blue);
+  --color-darker-blue: var(--darker-blue);
+  --color-light-grey-blue: var(--light-grey-blue);
+  --color-grey-blue: var(--grey-blue);
+  --color-muted-blue: var(--muted-blue);
+  --color-very-dark-blue: var(--very-dark-blue);
+  --color-error: var(--error);
+  --color-error-light: var(--error-light);
+  --color-light-bg: var(--light-bg);
+  --color-dark-bg-alt: var(--dark-bg-alt);
+
+  --font-spartan: var(--font-spartan);
+}
+
+.dark {
+  --background: #141625;
+  --foreground: #FFFFFF;
+  --invoice-bg: #1E2139;
+  --invoice-text: #FFFFFF;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-spartan);
+  font-optical-sizing: auto;
+}
+
+h1, .heading-l {
+  font-size: 36px;
+  line-height: 33px;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+
+h2, .heading-m {
+  font-size: 24px;
+  line-height: 22px;
+  letter-spacing: -0.75px;
+  font-weight: 700;
+}
+
+h3, .heading-s {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: -0.25px;
+  font-weight: 700;
+}
+
+.heading-s-variant {
+  font-size: 15px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  font-weight: 700;
+}
+
+p, .body {
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.1px;
+  font-weight: 500;
+}
+
+.body-variant {
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  font-weight: 500;
+}
+
+.input-field {
+  width: 100%;
+  border: 1px solid var(--light-grey-blue);
+  border-radius: 4px;
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--foreground);
+  background-color: var(--invoice-bg);
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+}
+
+.input-field.error {
+  border-color: var(--error);
+}
+
+.dark .input-field {
+  border-color: var(--darker-blue);
+}
+
+.dark .input-field:focus {
+  border-color: var(--primary);
+}
