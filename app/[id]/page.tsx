@@ -82,32 +82,30 @@ export default function InvoiceDetail() {
         <span className="heading-s-variant">Go back</span>
       </Link>
 
-      {/* Action Bar */}
       <div className="mb-6 flex items-center justify-between rounded-lg bg-invoice-bg p-6 shadow-sm">
         <div className="flex items-center gap-4">
-          <span className="body text-muted-blue">Status</span>
+          <span className="body dark:text-[#DFE3FA] text-[#858BB2]">Status</span>
           <StatusBadge status={invoice.status} />
         </div>
         <div className="flex gap-2">
           <button
             onClick={() => setIsEditFormOpen(true)}
-            className="rounded-full bg-[#F9FAFE] px-6 py-4 text-muted-blue transition-colors hover:bg-light-grey-blue dark:bg-darker-blue dark:text-light-grey-blue dark:hover:bg-white dark:hover:text-muted-blue"
+            className="rounded-full bg-[#F9FAFE] px-6 py-3 text-muted-blue transition-colors hover:bg-light-grey-blue dark:bg-darker-blue dark:text-light-grey-blue dark:hover:bg-white dark:hover:text-muted-blue"
           >
             <span className="heading-s-variant">Edit</span>
           </button>
           <button
             onClick={() => setIsDeleteModalOpen(true)}
-            className="rounded-full bg-error px-6 py-4 text-white transition-colors hover:bg-error-light"
+            className="rounded-full bg-error px-6 py-3 text-white transition-colors hover:bg-error-light"
           >
             <span className="heading-s-variant">Delete</span>
           </button>
-          <button className="rounded-full bg-primary px-6 py-4 text-white transition-colors hover:bg-primary-light">
+          <button className="rounded-full bg-primary px-6 py-3 text-white transition-colors hover:bg-primary-light">
             <span className="heading-s-variant">Mark as Paid</span>
           </button>
         </div>
       </div>
 
-      {/* Invoice Content */}
       <div className="rounded-lg bg-invoice-bg p-12 shadow-sm">
         <div className="mb-12 flex justify-between">
           <div>
@@ -115,31 +113,31 @@ export default function InvoiceDetail() {
               <span className="text-muted-blue">#</span>
               {invoice.id}
             </h3>
-            <p className="body text-muted-blue">{invoice.description}</p>
+            <p className="body dark:text-[#DFE3FA] text-[#858BB2]">{invoice.description}</p>
           </div>
           <div className="text-right">
-            <p className="body-variant text-muted-blue">{invoice.senderAddress.street}</p>
-            <p className="body-variant text-muted-blue">{invoice.senderAddress.city}</p>
-            <p className="body-variant text-muted-blue">{invoice.senderAddress.postCode}</p>
-            <p className="body-variant text-muted-blue">{invoice.senderAddress.country}</p>
+            <p className="body-variant dark:text-[#DFE3FA] text-[#858BB2]">{invoice.senderAddress.street}</p>
+            <p className="body-variant dark:text-[#DFE3FA] text-[#858BB2]">{invoice.senderAddress.city}</p>
+            <p className="body-variant dark:text-[#DFE3FA] text-[#858BB2]">{invoice.senderAddress.postCode}</p>
+            <p className="body-variant dark:text-[#DFE3FA] text-[#858BB2]">{invoice.senderAddress.country}</p>
           </div>
         </div>
 
         <div className="mb-12 grid grid-cols-3 gap-10">
           <div className="flex flex-col gap-8">
             <div>
-              <p className="body text-muted-blue mb-3">Invoice Date</p>
-              <p className="heading-s">{invoice.createdAt}</p>
+              <p className="body dark:text-[#DFE3FA] text-[#858BB2]">Invoice Date</p>
+              <p className="heading-s dark:text-white text-[#0C0E16]">{invoice.createdAt}</p>
             </div>
             <div>
-              <p className="body text-muted-blue mb-3">Payment Due</p>
-              <p className="heading-s">{invoice.paymentDue}</p>
+              <p className="body dark:text-[#DFE3FA] text-[#858BB2]">Payment Due</p>
+              <p className="heading-s dark:text-white text-[#0C0E16]">{invoice.paymentDue}</p>
             </div>
           </div>
 
           <div>
-            <p className="body text-muted-blue mb-3">Bill To</p>
-            <p className="heading-s mb-2">{invoice.clientName}</p>
+            <p className="body dark:text-[#DFE3FA] text-[#858BB2]">Bill To</p>
+            <p className="heading-s mb-2 dark:text-white text-[#0C0E16]">{invoice.clientName}</p>
             <div className="flex flex-col">
               <p className="body-variant text-muted-blue">{invoice.clientAddress.street}</p>
               <p className="body-variant text-muted-blue">{invoice.clientAddress.city}</p>
@@ -149,22 +147,20 @@ export default function InvoiceDetail() {
           </div>
 
           <div>
-            <p className="body text-muted-blue mb-3">Sent to</p>
-            <p className="heading-s">{invoice.clientEmail}</p>
+            <p className="body dark:text-[#DFE3FA] text-[#858BB2]">Sent to</p>
+            <p className="heading-s dark:text-white text-[#0C0E16]">{invoice.clientEmail}</p>
           </div>
         </div>
-
-        {/* Item List */}
-        <div className="overflow-hidden rounded-lg bg-[#F9FAFE] dark:bg-darker-blue">
+        <div className="overflow-hidden rounded-lg bg-[#F9FAFE] dark:bg-[#252945]">
           <div className="p-8 pb-4">
-            <div className="mb-8 grid grid-cols-4 text-muted-blue body">
+            <div className="mb-8 grid grid-cols-5 text-muted-blue body">
               <span className="col-span-2">Item Name</span>
               <span className="text-center">QTY.</span>
               <span className="text-right">Price</span>
               <span className="text-right">Total</span>
             </div>
             {invoice.items.map((item, index) => (
-              <div key={index} className="mb-8 grid grid-cols-4 items-center heading-s last:mb-0">
+              <div key={index} className="mb-8 grid grid-cols-5 items-center heading-s last:mb-0">
                 <span className="col-span-2">{item.name}</span>
                 <span className="text-center text-muted-blue">{item.quantity}</span>
                 <span className="text-right text-muted-blue">
@@ -183,8 +179,7 @@ export default function InvoiceDetail() {
             ))}
           </div>
 
-          {/* Grand Total */}
-          <div className="flex items-center justify-between bg-[#373B53] p-8 text-white dark:bg-very-dark-blue">
+          <div className="flex items-center justify-between bg-[#373B53] p-8 text-white dark:bg-[#0C0E16]">
             <span className="body">Amount Due</span>
             <span className="heading-m text-2xl">
               {new Intl.NumberFormat("en-GB", {
