@@ -20,9 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${leagueSpartan.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-row font-spartan">
+      <body className="min-h-full flex flex-col font-spartan lg:flex-row">
         <Sidebar />
-        <main className="ml-[103px] flex-1 px-6 pt-16 pb-8 lg:px-0 lg:pt-20">
+        <main className="flex-1 px-6 pb-8 pt-[104px] lg:ml-[103px] lg:px-0 lg:pt-20">
           <div className="mx-auto max-w-[730px]">
             {children}
           </div>

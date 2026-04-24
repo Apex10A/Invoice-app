@@ -25,7 +25,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-50 flex h-[72px] w-full flex-row items-center bg-[#373b53] lg:h-full lg:w-[103px] lg:flex-col lg:rounded-r-[20px] lg:bg-dark-blue">
+    <aside className="fixed left-0 top-0 z-50 flex h-[72px] w-full flex-row items-center bg-dark-blue lg:h-full lg:w-[103px] lg:flex-col lg:rounded-r-[20px]">
       <div className="relative h-[72px] w-[72px] lg:h-[103px] lg:w-full">
         <Image src="/Logo.png" alt="" fill className="object-contain" />
       </div>
@@ -45,11 +45,7 @@ export default function Sidebar() {
             </div>
           )}
         </button>
-
-        {/* Divider */}
         <div className="h-full w-[1px] bg-[#494E6E] lg:h-[1px] lg:w-full" />
-
-        {/* Avatar */}
         <div className="flex h-full items-center justify-center px-6 lg:h-auto lg:py-6 lg:px-0">
           <div className="relative h-8 w-8 overflow-hidden rounded-full lg:h-10 lg:w-10">
             <Image src="/profile.png" alt="Avatar" fill />
