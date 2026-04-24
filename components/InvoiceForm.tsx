@@ -185,7 +185,6 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
             </div>
           </section>
 
-          {/* Bill To */}
           <section className="flex flex-col gap-6">
             <p className="heading-s-variant text-primary">Bill To</p>
             <div className="flex flex-col gap-2">
