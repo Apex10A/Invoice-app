@@ -27,9 +27,9 @@ export default function InvoiceItem({
           <span className="text-muted-blue">#</span>
           {id}
         </span>
-        <span className="body text-muted-blue flex-1">{dueDate}</span>
-        <span className="body text-muted-blue flex-1">{clientName}</span>
-        <span className="heading-m w-32 text-right">{formattedAmount}</span>
+        <span className="body dark:text-[#DFE3FA] text-[#888EB0] flex-1">{dueDate}</span>
+        <span className="body dark:text-white text-[#888EB0] flex-1">{clientName}</span>
+        <span className="heading-m dark:text-white text-[#0C0E16] text-[15px] w-32 text-right">{formattedAmount}</span>
       </div>
       <div className="ml-10 flex items-center gap-5">
         <StatusBadge status={status} />

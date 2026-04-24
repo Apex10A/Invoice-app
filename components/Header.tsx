@@ -10,7 +10,7 @@ export default function Header({ count, onNewInvoice }: HeaderProps) {
     <header className="mb-16 flex items-center justify-between">
       <div>
         <h1 className="mb-2">Invoices</h1>
-        <p className="text-muted-blue">
+        <p className="dark:text-[#DFE3FA] text-[#888EB0]">
           {count > 0 ? `There are ${count} total invoices` : "No invoices"}
         </p>
       </div>
