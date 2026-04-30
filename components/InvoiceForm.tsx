@@ -196,7 +196,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className={`body ${errors.senderCity ? "text-error" : "text-muted-blue"}`}>City</label>
-                  {errors.senderCity && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+                  {errors.senderCity && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
                 </div>
                 <input 
                   type="text" 
@@ -208,7 +208,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className={`body ${errors.senderPostCode ? "text-error" : "text-muted-blue"}`}>Post Code</label>
-                  {errors.senderPostCode && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+                  {errors.senderPostCode && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
                 </div>
                 <input 
                   type="text" 
