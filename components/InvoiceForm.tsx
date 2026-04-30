@@ -275,7 +275,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className={`body ${errors.clientCity ? "text-error" : "text-muted-blue"}`}>City</label>
-                  {errors.clientCity && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+                  {errors.clientCity && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
                 </div>
                 <input 
                   type="text" 
@@ -287,7 +287,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className={`body ${errors.clientPostCode ? "text-error" : "text-muted-blue"}`}>Post Code</label>
-                  {errors.clientPostCode && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+                  {errors.clientPostCode && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
                 </div>
                 <input 
                   type="text" 
@@ -299,7 +299,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-center">
                   <label className={`body ${errors.clientCountry ? "text-error" : "text-muted-blue"}`}>Country</label>
-                  {errors.clientCountry && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+                  {errors.clientCountry && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
                 </div>
                 <input 
                   type="text" 
