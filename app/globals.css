@@ -102,27 +102,20 @@ p, .body {
 
 .input-field {
   width: 100%;
-  border: 1px solid var(--light-grey-blue);
+  border: 1px solid #DFE3FA;
   border-radius: 4px;
   padding: 16px 20px;
   font-size: 15px;
   font-weight: 700;
   color: var(--foreground);
   background-color: var(--invoice-bg);
-  transition: border-color 0.2s;
+  transition: all 0.2s;
   outline: none;
-}
-
-.input-field:focus {
-  border-color: var(--primary);
-}
-
-.input-field.error {
-  border-color: var(--error);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .dark .input-field {
-  border-color: var(--darker-blue);
+  border-color: #252945;
 }
 
 .dark .input-field:focus {
