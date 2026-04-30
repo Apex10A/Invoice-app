@@ -350,7 +350,7 @@ export default function InvoiceForm({ type, id, onClose }: InvoiceFormProps) {
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
               <label className={`body ${errors.description ? "text-error" : "text-muted-blue"}`}>Project Description</label>
-              {errors.description && <span className="text-[10px] font-semibold text-error">can't be empty</span>}
+              {errors.description && <span className="text-[10px] font-semibold text-error">can&apos;t be empty</span>}
             </div>
             <input 
               type="text" 
